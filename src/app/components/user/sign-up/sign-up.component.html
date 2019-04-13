@@ -1,4 +1,4 @@
-<form #signUpForm="ngForm">
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
   <input type="text" #userName="ngModel" [(ngModel)]="userService.selectedUser.userName" name="userName"
     placeholder="Username" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !userName.valid }">
   <div *ngIf="signUpForm.submitted && !userName.valid">
@@ -29,3 +29,13 @@
   </div>
   <input type="submit" value="Sign Up">
 </form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSuccessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>
