@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from '../../environments/environment';
 
@@ -16,16 +16,20 @@ export class UserService {
     password: ''
   }
 
-
+  noAuthHeader = { headers: new HttpHeaders({ 'NoAuth': 'True' }) };
 
   constructor(private httpClient: HttpClient) { }
 
   postUser(user: User) {
-    return this.httpClient.post(environment.apiBaseUrl + '/register', user)
+    return this.httpClient.post(environment.apiBaseUrl + '/register', user, this.noAuthHeader)
   }
 
   login(authCredentials) {
-    return this.httpClient.post(environment.apiBaseUrl + '/authenticate', authCredentials);
+    return this.httpClient.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
+  }
+
+  getUserProfile() {
+    return this.httpClient.get(environment.apiBaseUrl + '/userProfile');
   }
 
   setToken(token: string) {

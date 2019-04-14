@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  userDetail
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    this.userService.getUserProfile().subscribe(
+      res => {
+        this.userDetail = res['user']
+      },
+      err => {
+
+      }
+    )
   }
 
+  onLogout() {
+    this.userService.deleteToken()
+    this.router.navigate(['/signin'])
+  }
 }
