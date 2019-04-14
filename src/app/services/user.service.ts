@@ -23,4 +23,12 @@ export class UserService {
   postUser(user: User) {
     return this.httpClient.post(environment.apiBaseUrl + '/register', user)
   }
+
+  login(authCredentials) {
+    return this.httpClient.post(environment.apiBaseUrl + '/authenticate', authCredentials);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
 }
