@@ -14,7 +14,7 @@ export class SignUpComponent implements OnInit {
   showSuccessMessage: boolean
   serverErrorMessages: string
 
-  constructor(private userService: UserService) { }
+  constructor(public userService: UserService) { }
 
   ngOnInit() {
   }
@@ -38,9 +38,7 @@ export class SignUpComponent implements OnInit {
 
   resetForm(form: NgForm) {
     this.userService.selectedUser = {
-      userName: '',
-      firstName: '',
-      lastName: '',
+      fullName: null,
       email: '',
       password: ''
     };

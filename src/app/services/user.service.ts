@@ -9,9 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class UserService {
   selectedUser: User = {
-    userName: '',
-    firstName: '',
-    lastName: '',
+    fullName: '',
     email: '',
     password: ''
   }
@@ -21,15 +19,15 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   postUser(user: User) {
-    return this.httpClient.post(environment.apiBaseUrl + '/register', user, this.noAuthHeader)
+    return this.httpClient.post(environment.apiBaseUrlNodeJs + '/register', user, this.noAuthHeader)
   }
 
   login(authCredentials) {
-    return this.httpClient.post(environment.apiBaseUrl + '/authenticate', authCredentials, this.noAuthHeader);
+    return this.httpClient.post(environment.apiBaseUrlNodeJs + '/authenticate', authCredentials, this.noAuthHeader);
   }
 
   getUserProfile() {
-    return this.httpClient.get(environment.apiBaseUrl + '/userProfile');
+    return this.httpClient.get(environment.apiBaseUrlNodeJs + '/userProfile');
   }
 
   setToken(token: string) {

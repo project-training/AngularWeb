@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'http://localhost:3000/user'
+  apiBaseUrlNodeJs: 'http://localhost:3000/user'
+  // apiBaseUrlNodeJs: 'http://3.0.98.134:3000/user'
 };
 
 /*
